@@ -35,7 +35,7 @@
                 <span class="dropdown-item dropdown-header">15 Notifications</span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                  <i class="bi bi-envelope me-2"></i> 4 new Notifications
+                  <i class="bi bi-envelope me-2"></i> Pesan Masuk
                   <span class="float-end text-secondary fs-7">3 mins</span>
                 </a>
                 <div class="dropdown-divider"></div>

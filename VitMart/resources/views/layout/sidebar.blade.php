@@ -1,4 +1,4 @@
- <!--begin::Sidebar-->
+<!--begin::Sidebar-->
       <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
@@ -6,9 +6,11 @@
           <a href="../index.html" class="brand-link">
             <!--begin::Brand Image-->
             <img
-              src="{{ asset("/assets/assets/img/AdminLTELogo.png") }}"
+              src="{{ asset("/assets/assets/img/VitMartLogo.png") }}"
               alt="AdminLTE Logo"
               class="brand-image opacity-75 shadow"
+              style="width: 50px; height: 200px; border-radius: 100%;"
+              data-lte-toggle="sidebar-brand-image"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
@@ -50,21 +52,21 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url("/fakultas") }}" class="nav-link">
+                    <a href="/makanan" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i> 
                       <p>Makanan</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url("/fakultas/create") }}" class="nav-link">
+                    <a href="/minuman" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Minuman</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url("/fakultas") }}" class="nav-link">
+                    <a href="/obat" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i> 
-                      <p>Kesehatan</p>
+                      <p>Obat - Obatan</p>
                     </a>
                   </li>
                 </ul>
@@ -74,7 +76,7 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
-                    Poin Member
+                    Lain - Lainnya
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -82,13 +84,19 @@
                   <li class="nav-item">
                     <a href="{{ url("/prodi") }}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i> 
-                      <p>List Member</p>
+                      <p>Keranjang</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url("/prodi") }}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i> 
+                      <p>Poin Member</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="{{ url("/prodi/create") }}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Create Member</p>
+                      <p>Info Member</p>
                     </a>
                   </li>
                 </ul>

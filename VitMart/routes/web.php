@@ -12,6 +12,18 @@ Route::get("/profil", function(){
     return view("profil");
 });
 
+Route::get("/makanan", function(){
+    return view("makanan");
+});
+
+Route::get("/minuman", function(){
+    return view("minuman");
+});
+
+Route::get("/obat", function(){
+    return view("obat");
+});
+
 Route::get('/', function () {
     return view('home');
 });
@@ -24,13 +36,19 @@ Route::post("/register", [AuthController::class, 'do_register']);
 Route::get("/logout", [AuthController::class, 'logout']);
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::group(['middleware' => [CekLogin::class.':admin']], function(){
-        Route::get("/admin", [AdminController::class, 'index']);
-        Route::resource('prodi', ProdiController::class);
-        Route::resource('fakultas', FakultasController::class);
+    Route::get("/admin", [AdminController::class, 'index'])->middleware(CekLogin::class.':admin');
+    Route::get("/user", [UserController::class, 'index'])->middleware(CekLogin::class.':user');
+    Route::prefix('admin')->group(function (){
+        //Route::get("/", [AdminController::class, 'index']);
     });
 
-    Route::group(['middleware' => [CekLogin::class.':user']], function(){
-        Route::get("/user", [UserController::class, 'index']);
+
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/admin', [AdminController::class, 'index']);
     });
+
+    Route::middleware(['auth', 'role:user'])->group(function () {
+        Route::get('/user', [UserController::class, 'index']);
+    });
+
 });

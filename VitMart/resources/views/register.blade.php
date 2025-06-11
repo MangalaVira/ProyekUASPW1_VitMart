@@ -83,6 +83,10 @@
               </div>
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
             </div>
+            <select name="level" required>
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+    </select>
             @error('password')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

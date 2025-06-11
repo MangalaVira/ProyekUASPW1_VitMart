@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
@@ -52,6 +51,12 @@
             <h1 class="mb-0">Login Page</h1>
           </a>
         </div>
+        <img 
+          src="{{ asset("/assets/assets/img/VitMartLogo.png") }}" 
+          alt="VitMartLogo"
+          class="img-fluid mx-auto d-block mb-3"
+          style="width: 100px; height: 100px;"
+          />
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
           @error('failed')
