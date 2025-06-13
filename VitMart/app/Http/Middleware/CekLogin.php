@@ -19,7 +19,7 @@ class CekLogin
         //cek apakah user sudah login
         if(Auth::check()){
             //cek apakah level admin atau uses (sesuai dengan roles yang di passing)
-            if(Auth::user()->level === $roles){
+            if(Auth::User()->level === $roles){
                 return $next($request);
             }
         }

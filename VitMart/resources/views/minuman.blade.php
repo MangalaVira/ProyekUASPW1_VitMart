@@ -91,44 +91,43 @@
 
         const jumlahMap = {};
 
-        function formatRupiah(angka) {
-          return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
+      function formatRupiah(angka) {
+        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
 
-        function ubahJumlah(id, delta) {
-          jumlahMap[id] += delta;
-          if (jumlahMap[id] < 1) jumlahMap[id] = 1;
+      function ubahJumlah(id, delta) {
+        jumlahMap[id] += delta;
+        if (jumlahMap[id] < 1) jumlahMap[id] = 1;
 
-          const produk = produkList.find((p) => p.id === id);
-          const total = jumlahMap[id] * produk.harga;
+        const produk = produkList.find((p) => p.id === id);
+        const total = jumlahMap[id] * produk.harga;
 
-          document.getElementById("jumlah-" + id).textContent = jumlahMap[id];
-          document.getElementById("total-" + id).textContent = formatRupiah(total);
-        }
+        document.getElementById("jumlah-" + id).textContent = jumlahMap[id];
+        document.getElementById("total-" + id).textContent = formatRupiah(total);
+      }
 
-        const container = document.getElementById("produk-container");
+      const container = document.getElementById("produk-container");
 
-        produkList.forEach((produk) => {
-          jumlahMap[produk.id] = 1;
+      produkList.forEach((produk) => {
+        jumlahMap[produk.id] = 0;
 
-          const item = document.createElement("div");
-          item.classList.add("item");
+        const item = document.createElement("div");
+        item.classList.add("item");
 
-          item.innerHTML = `
-      <h3>${produk.nama}</h3>
-      <img src="${produk.gambar}" alt="${produk.nama}">
-      <p>Harga: Rp ${formatRupiah(produk.harga)}</p>
-      <div class="quantity-control">
-        <button onclick="ubahJumlah(${produk.id}, -1)">-</button>
-        <span id="jumlah-${produk.id}">1</span>
-        <button onclick="ubahJumlah(${produk.id}, 1)">+</button>
-      </div>
-      <p class="total">Total: Rp <span id="total-${produk.id}">${formatRupiah(produk.harga)}</span></p>
-    `;
+        item.innerHTML = `
+          <h3>${produk.nama}</h3>
+          <img src="${produk.gambar}" alt="${produk.nama}">
+          <p>Harga: Rp ${formatRupiah(produk.harga)}</p>
+          <div class="quantity-control">
+            <button onclick="ubahJumlah(${produk.id}, -1)">-</button>
+            <span id="jumlah-${produk.id}">${jumlahMap[produk.id]}</span>
+            <button onclick="ubahJumlah(${produk.id}, 1)">+</button>
+          </div>
+          <p class="total">Total: Rp <span id="total-${produk.id}">0</span></p>
+        `;
 
-          container.appendChild(item);
-        });
-      </script>
-    </body>
-  </html>
+        container.appendChild(item);
+      });
+    </script>
+  </body>
 </html>

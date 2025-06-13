@@ -59,76 +59,70 @@
     <body>
       <h1>Keranjang Belanja Obat-Obatan</h1>
 
-      <div class="grid-container" id="produk-container"></div>
+    <form id="keranjangForm" action="{{ route('keranjang.store') }}" method="POST">
+        @csrf
+        <div class="grid-container" id="produk-container"></div>
+        <input type="hidden" name="multi" value="1">
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success">Masukkan ke Keranjang</button>
+        </div>
+      </form>
 
       <script>
-        const produkList = [
-          { id: 1, nama: "Bodrex", harga: 12500, gambar: 
-                    src="{{ asset("/assets/assets/img/ObBodrex.png") }}" },
-          { id: 2, nama: "Entro Stop", harga: 16000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObEntroStop.png") }}" },
-          { id: 3, nama: "Hansaplast", harga: 11500, gambar: 
-                    src="{{ asset("/assets/assets/img/ObHansaplast.png") }}" },
-          { id: 4, nama: "Hot In Cream", harga: 23000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObHotInCream.png") }}" },
-          { id: 5, nama: "Koyo Cabe", harga: 17000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObKoyoCabe.png") }}" },
-          { id: 6, nama: "Minyak Kayu Putih", harga: 30000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObMinyakKayuPutih.png") }}" },
-          { id: 7, nama: "Mylanta", harga: 85000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObMylanta.png") }}" },
-          { id: 8, nama: "OBH Combi", harga: 27500, gambar: 
-                    src="{{ asset("/assets/assets/img/ObOBHCombi.png") }}" },
-          { id: 9, nama: "Sangobion", harga: 26000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObSangobion.png") }}" },
-          { id: 10, nama: "Tolak Angin", harga: 5000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObTolakAngin.png") }}" },
-          { id: 11, nama: "Antimo", harga: 7000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObAntimo.png") }}" },
-          { id: 12, nama: "Oskadon", harga: 3000, gambar: 
-                    src="{{ asset("/assets/assets/img/ObOskadon.png") }}" },
-        ];
+  const produkList = [
+    { id: "OB1", nama: "Bodrex", harga: 12500, gambar: "{{ asset('/assets/assets/img/ObBodrex.png') }}" },
+    { id: "OB2", nama: "Entro Stop", harga: 16000, gambar: "{{ asset('/assets/assets/img/ObEntroStop.png') }}" },
+    { id: "OB3", nama: "Hansaplast", harga: 11500, gambar: "{{ asset('/assets/assets/img/ObHansaplast.png') }}" },
+    { id: "OB4", nama: "Hot In Cream", harga: 23000, gambar: "{{ asset('/assets/assets/img/ObHotInCream.png') }}" },
+    { id: "OB5", nama: "Koyo Cabe", harga: 17000, gambar: "{{ asset('/assets/assets/img/ObKoyoCabe.png') }}" },
+    { id: "OB6", nama: "Minyak Kayu Putih", harga: 30000, gambar: "{{ asset('/assets/assets/img/ObMinyakKayuPutih.png') }}" },
+    { id: "OB7", nama: "Mylanta", harga: 85000, gambar: "{{ asset('/assets/assets/img/ObMylanta.png') }}" },
+    { id: "OB8", nama: "OBH Combi", harga: 27500, gambar: "{{ asset('/assets/assets/img/ObOBHCombi.png') }}" },
+    { id: "OB9", nama: "Sangobion", harga: 26000, gambar: "{{ asset('/assets/assets/img/ObSangobion.png') }}" },
+    { id: "OB10", nama: "Tolak Angin", harga: 5000, gambar: "{{ asset('/assets/assets/img/ObTolakAngin.png') }}" },
+    { id: "OB11", nama: "Antimo", harga: 7000, gambar: "{{ asset('/assets/assets/img/ObAntimo.png') }}" },
+    { id: "OB12", nama: "Oskadon", harga: 3000, gambar: "{{ asset('/assets/assets/img/ObOskadon.png') }}" },
+  ];
 
-        const jumlahMap = {};
+  const jumlahMap = {};
 
-        function formatRupiah(angka) {
-          return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
+  function formatRupiah(angka) {
+    return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
-        function ubahJumlah(id, delta) {
-          jumlahMap[id] += delta;
-          if (jumlahMap[id] < 1) jumlahMap[id] = 1;
+  function ubahJumlah(id, delta) {
+    jumlahMap[id] += delta;
+    if (jumlahMap[id] < 1) jumlahMap[id] = 1;
 
-          const produk = produkList.find((p) => p.id === id);
-          const total = jumlahMap[id] * produk.harga;
+    const produk = produkList.find((p) => p.id === id);
+    const total = jumlahMap[id] * produk.harga;
 
-          document.getElementById("jumlah-" + id).textContent = jumlahMap[id];
-          document.getElementById("total-" + id).textContent = formatRupiah(total);
-        }
+    document.getElementById("jumlah-" + id).textContent = jumlahMap[id];
+    document.getElementById("total-" + id).textContent = formatRupiah(total);
+    document.getElementById("input-" + id).value = jumlahMap[id];
+  }
 
-        const container = document.getElementById("produk-container");
+  const container = document.getElementById("produk-container");
 
-        produkList.forEach((produk) => {
-          jumlahMap[produk.id] = 1;
+  produkList.forEach((produk) => {
+    jumlahMap[produk.id] = 0;
 
-          const item = document.createElement("div");
-          item.classList.add("item");
+    const item = document.createElement("div");
+    item.classList.add("item");
 
-          item.innerHTML = `
+    item.innerHTML = `
       <h3>${produk.nama}</h3>
       <img src="${produk.gambar}" alt="${produk.nama}">
       <p>Harga: Rp ${formatRupiah(produk.harga)}</p>
       <div class="quantity-control">
-        <button onclick="ubahJumlah(${produk.id}, -1)">-</button>
-        <span id="jumlah-${produk.id}">1</span>
-        <button onclick="ubahJumlah(${produk.id}, 1)">+</button>
+        <button type="button" onclick="ubahJumlah('${produk.id}', -1)">-</button>
+        <span id="jumlah-${produk.id}">0</span>
+        <button type="button" onclick="ubahJumlah('${produk.id}', 1)">+</button>
       </div>
-      <p class="total">Total: Rp <span id="total-${produk.id}">${formatRupiah(produk.harga)}</span></p>
+      <p class="total">Total: Rp <span id="total-${produk.id}">0</span></p>
+      <input type="hidden" name="products[${produk.id}]" id="input-${produk.id}" value="0">
     `;
 
-          container.appendChild(item);
-        });
-      </script>
-    </body>
-  </html>
-</html>
+    container.appendChild(item);
+  });
+</script>

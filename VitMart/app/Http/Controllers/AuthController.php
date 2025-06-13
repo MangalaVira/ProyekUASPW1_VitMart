@@ -10,50 +10,42 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    function login(){
+    function login()
+    {
         $user = Auth::user();
 
-        //jik user sudah login
-        if($user){
-            //cek level
-            if($user->level == 'admin'){
+        if ($user) {
+            if ($user->level == 'admin') {
                 return redirect()->intended('admin');
-            }else if($user->level == 'user'){
-                return redirect()->intended('user');
+            } else if ($user->level == 'User') {
+                return redirect()->intended('User');
             }
         }
 
         return view('login');
     }
 
-    function do_login(Request $request){
+    function do_login(Request $request)
+    {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8'
         ]);
-        //menyiapkan variabel cridentials
+
         $credentials = $request->only('email', 'password');
 
-        //cek cridentials ke tabel users meggunakan Auth
-        if(Auth::attempt($credentials)){
-            //jika berhasil login
-            //cek level user
-            $user = Auth::user();
-            if($user->level == 'admin'){
+        if (Auth::attempt($credentials)) {
+            $user = Auth::User();
+
+            if ($user->level == 'admin') {
                 return redirect()->intended('admin');
-            }else if($user->level == 'user'){
-                return redirect()->intended('user');
+            } else if ($user->level == 'User') {
+                return redirect()->intended('User');
             }
+
             return redirect()->intended('/');
         }
 
-    function showLogin(){
-
-        return view('login');  
-
-    }
-
-        //jika login gagal
         return redirect('login')
             ->withErrors([
                 'failed' => 'User tidak ditemukan atau password yang anda masukkan salah'
@@ -61,11 +53,18 @@ class AuthController extends Controller
             ->withInput();
     }
 
-    function register(){
+    function showLogin()
+    {
+        return view('login');
+    }
+
+    function register()
+    {
         return view("register");
     }
 
-    function do_register(Request $request){
+    function do_register(Request $request)
+    {
         $validator = Validator::make(
             $request->all(),
             [
@@ -74,10 +73,11 @@ class AuthController extends Controller
                 'password' => 'required|min:8'
             ]
         );
-        if($validator->fails()){
+
+        if ($validator->fails()) {
             return redirect("register")
-            ->withErrors($validator)
-            ->withInput();    
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $user = new User();
@@ -90,9 +90,9 @@ class AuthController extends Controller
         return redirect('login');
     }
 
-    function logout(){
+    function logout()
+    {
         Auth::logout();
         return redirect('login');
     }
-
 }

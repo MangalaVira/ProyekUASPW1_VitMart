@@ -82,21 +82,21 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url("/prodi") }}" class="nav-link">
+                    <a href="/keranjang" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i> 
                       <p>Keranjang</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url("/prodi") }}" class="nav-link">
+                    <a href="/member/poin" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i> 
                       <p>Poin Member</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url("/prodi/create") }}" class="nav-link">
+                    <a href="/member.create" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Info Member</p>
+                      <p>Buat Member</p>
                     </a>
                   </li>
                 </ul>

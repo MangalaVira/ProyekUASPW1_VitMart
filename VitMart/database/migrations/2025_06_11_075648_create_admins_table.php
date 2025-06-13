@@ -6,17 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up() : void
     {
-        Schema::create('admin', function (Blueprint $table) {
+    Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('level')->default('admin');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -24,11 +22,10 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    
     public function down(): void
-{
-    Schema::table('admin', function (Blueprint $table) {
-        $table->dropColumn('level');
-    });
-}
+    {
+        Schema::dropIfExists('admin');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
+    }
 };

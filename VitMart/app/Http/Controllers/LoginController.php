@@ -8,10 +8,10 @@ class LoginController extends Controller
 {
     protected function authenticated(Request $request, $user)
 {
-    if ($user->role == 'admin') {
+    if ($user->level == 'admin') {
         return redirect('/admin');
-    } elseif ($user->role == 'user') {
-        return redirect('/user');
+    } elseif ($user->level == 'User') {
+        return redirect('/User');
     }
 
     return redirect('/'); // fallback jika tidak ada role cocok

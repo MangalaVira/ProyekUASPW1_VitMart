@@ -1,4 +1,4 @@
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <!--begin::Header-->
       <nav class="app-header navbar navbar-expand bg-body">
         <!--begin::Container-->
@@ -22,15 +22,19 @@
               </a>
             </li>
             <!--end::Navbar Search-->
-            <!--begin::Messages Dropdown Menu-->
-           
+            <!--begin::Messages Dropdown Menu-->          
+          
             <!--end::Messages Dropdown Menu-->
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                <i class="bi bi-bell-fill"></i>
-                <span class="navbar-badge badge text-bg-primary">15</span>
-              </a>
+              <div style="position: fixed; top: 5.5px; right: 220px;">
+  <a href="#" class="text-dark position-relative">
+    <i class="bi bi-cart3" style="font-size: 30px;"></i>
+    <span id="keranjang-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      0
+    </span>
+  </a>
+</div>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <span class="dropdown-item dropdown-header">15 Notifications</span>
                 <div class="dropdown-divider"></div>
