@@ -3,11 +3,15 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\CekLogin;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PoinMemberController;
+use App\Http\Middleware\CekLogin;
+use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [AuthController::class, 'login']);
 
@@ -60,9 +64,12 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang');
-        //Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
         Route::post('/keranjang', [KeranjangController::class, 'store'])->name('keranjang.store');
         Route::delete('/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.destroy');
+
+        Route::patch('/keranjang/{id}/tambah', [KeranjangController::class, 'tambah'])->name('keranjang.tambah');
+        Route::patch('/keranjang/{id}/kurangi', [KeranjangController::class, 'kurangi'])->name('keranjang.kurangi');
+
     });
 
     Route::get('/member.create', [MemberController::class, 'create'])->name('member.create');
@@ -75,9 +82,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/member/success', [MemberController::class, 'success'])->name('member.success');
     Route::get('/member', [MemberController::class, 'index'])->name('member.indexmember');
     Route::get('/member/poin', [MemberController::class, 'poin'])->name('member.add_points');
-    Route::get('/member/add-points', [MemberController::class, 'addPointsForm'])->name('member.add_points_form');Route::post('/member/add-points', [MemberController::class, 'addPointsSubmit'])->name('member.add_points_submit');
+    Route::get('/member/add-points', [MemberController::class, 'addPointsForm'])->name('member.add_points_form');
+    Route::post('/member/add-points', [MemberController::class, 'addPointsSubmit'])->name('member.add_points_submit');
 
-    Route::group(['middleware' => [CekLogin::class.':user']], function(){
+    Route::group(['middleware' => [CekLogin::class.':admin']], function(){
         Route::get('/products', [ProductController::class, 'index'])->name('products.index');
         Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
         Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -86,4 +94,12 @@ Route::group(['middleware' => ['auth']], function(){
     });
 
     Route::resource('products', ProductController::class);
+
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+    Route::post('/checkout', [TransaksiController::class, 'checkout'])->name('checkout');
+
+    Route::get('/member/poin', [MemberController::class, 'daftarPoin'])->name('member.poin');
+    Route::get('/member/add-points', [MemberController::class, 'showAddPointsForm'])->name('member.add_points');
+    Route::post('/member/add-points', [MemberController::class, 'submitAddPoints'])->name('member.add_points_submit');
 });

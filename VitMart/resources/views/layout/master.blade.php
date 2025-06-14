@@ -61,9 +61,9 @@
       @include('layout.sidebar')
       <!--begin::App Main-->
       <main class="app-main">
-<div class="app-content px-4 py-3">
-        <!-- Ini Bagian Content -->
-        @yield('content')
+      <div class="app-content px-4 py-3">
+      <!-- Ini Bagian Content -->
+      @yield('content')
       </main>
       <!--end::App Main-->
      

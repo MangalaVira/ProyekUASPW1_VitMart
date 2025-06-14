@@ -11,7 +11,7 @@
     @endif
 
     <div class="mb-3">
-        <a href="{{ route('member.add_points') }}" class="btn btn-primary">+ Tambah Poin</a>
+        <a href="{{ route('member.add_points') }}" class="btn btn-primary mb-3">+ Tambah Poin</a>
     </div>
 
     <table class="table table-bordered">
@@ -19,7 +19,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama Member</th>
-                <th>No Telp</th>
+                <th>Email</th>
                 <th>Total Poin</th>
             </tr>
         </thead>

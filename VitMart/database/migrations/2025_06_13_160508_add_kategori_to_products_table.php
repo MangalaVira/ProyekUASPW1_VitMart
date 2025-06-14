@@ -9,17 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+public function up(): void
 {
     Schema::table('products', function (Blueprint $table) {
-        $table->string('kategori')->nullable()->after('deskripsi');
+        if (Schema::hasColumn('products', 'kategori')) {
+            $table->dropColumn('kategori');
+        }
     });
-}
 
-public function down(): void
-{
     Schema::table('products', function (Blueprint $table) {
-        $table->dropColumn('kategori');
+        $table->string('kategori')->nullable();
     });
 }
 

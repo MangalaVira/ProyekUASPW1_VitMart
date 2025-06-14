@@ -6,7 +6,7 @@
         <!--begin::Copyright-->
         <strong>
           Copyright &copy; 2025-2026&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+          <a href="https://adminlte.io" class="text-decoration-none">Vitmart</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->

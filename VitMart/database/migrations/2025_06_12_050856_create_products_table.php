@@ -18,14 +18,7 @@ return new class extends Migration
         $table->unsignedBigInteger('kategori')->nullable();
         $table->timestamps();
         });
-
-        // Tambah Stok
-       //Schema::create('products', function (Blueprint $table) {
-        //$table->id();
-        //$table->string('name');
-        //$table->integer('stock')->default(0);
-        //$table->timestamps();
-        //});
+    
     }
 
     public function down(): void

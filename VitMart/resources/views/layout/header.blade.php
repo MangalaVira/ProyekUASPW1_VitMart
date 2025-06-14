@@ -12,46 +12,21 @@
             </li>
             <li class="nav-item d-none d-md-block"><a href="{{ url("/") }}" class="nav-link">Home</a></li>
           </ul>
-          <!--end::Start Navbar Links-->
-          <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="bi bi-search"></i>
-              </a>
-            </li>
-            <!--end::Navbar Search-->
-            <!--begin::Messages Dropdown Menu-->          
-          
-            <!--end::Messages Dropdown Menu-->
-            <!--begin::Notifications Dropdown Menu-->
+            
+            <!--begin::Cart Icon Menu-->
             <li class="nav-item dropdown">
           <div style="position:sticky; top: 5.5px; right: 185px;">
-            <a href="#" class="text-dark position-relative">
+            <a href="{{ route('keranjang') }}" class="text-dark position-relative">
               <i class="bi bi-cart3" style="font-size: 30px;"></i>
               <span id="keranjang-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              0
+                {{ $jumlahJenisProduk }}
               </span>
             </a>
           </div>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-envelope me-2"></i> Pesan Masuk
-                  <span class="float-end text-secondary fs-7">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
-                  <span class="float-end text-secondary fs-7">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
-              </div>
+             
             </li>
-            <!--end::Notifications Dropdown Menu-->
+            <!--end::Cart Icon Menu-->
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
               <a class="nav-link" href="#" data-lte-toggle="fullscreen">
@@ -74,7 +49,7 @@
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="{{ asset("/assets/img/user2-160x160.jpg") }}"
+                    src="{{ asset("/assets/assets/img/user1-128x128.jpg") }}"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />

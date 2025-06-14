@@ -27,30 +27,37 @@ class MemberController extends Controller
         return redirect()->route('member.indexmember')->with('success', 'Member berhasil dibuat!');
     }
 
-    public function addPointsForm()
+    public function showAddPointsForm()
     {
     $members = Member::all();
     return view('member.add_points', compact('members'));
     }
 
-    public function addPointsSubmit(Request $request)
+
+    public function submitAddPoints(Request $request)
     {
+    
     $request->validate([
         'member_id' => 'required|exists:members,id',
-        'poin' => 'required|integer|min:1',
+        'poin' => 'required|numeric|min:1'
     ]);
 
+    
     $member = Member::find($request->member_id);
     $member->poin += $request->poin;
     $member->save();
 
-    return redirect()->route('member/poin')->with('success', 'Poin berhasil ditambahkan.');
+
+    return redirect()->route('member.poin')->with('success', 'Poin berhasil ditambahkan');
     }
-    public function poin()
-    {
+
+
+    public function daftarPoin()
+    {   
     $members = Member::all();
-    return view('member/poin', compact('members'));
+    return view('member.poin', compact('members'));
     }
+
 
     public function index()
     {
