@@ -19,6 +19,12 @@ class TransaksiController extends Controller
             return redirect()->route('keranjang')->with('error', 'Keranjang kosong!');
         }
 
+        foreach ($keranjang as $item) {
+            if ($item->quantity > $item->product->stok) {
+                return redirect()->route('keranjang')->with('error', 'Stok produk ' . $item->product->nama . ' tidak mencukupi.');
+            }
+        }
+
         $total = $keranjang->sum(fn($item) => $item->quantity * $item->product->harga);
 
         $transaksi = Transaksi::create([
@@ -33,6 +39,10 @@ class TransaksiController extends Controller
                 'quantity' => $item->quantity,
                 'harga_satuan' => $item->product->harga,
             ]);
+            
+            $product = $item->product;
+            $product->stok -= $item->quantity;
+            $product->save();
         }
 
         Keranjang::where('user_id', $user->id)->delete();

@@ -38,16 +38,10 @@
         </div>
 
         <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi</label>
-            <textarea class="form-control" name="deskripsi" rows="3"></textarea>
-        </div>
-
-        <div class="mb-3">
             <label for="kategori" class="form-label">Kategori</label>
             <input type="text" class="form-control" name="kategori">
         </div>
 
         <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="{{ route('products.index') }}" class="btn btn-secondary">Daftar Produk</a>
     </form>
 @endsection

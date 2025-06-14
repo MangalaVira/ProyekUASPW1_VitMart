@@ -76,7 +76,7 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
-                    Lain - Lainnya
+                    Lainnya
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -97,6 +97,12 @@
                     <a href="/member.create" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Buat Member</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/products" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Daftar Produk</p>
                     </a>
                   </li>
                   <li class="nav-item">

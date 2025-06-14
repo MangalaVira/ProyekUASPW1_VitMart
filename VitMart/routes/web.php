@@ -69,7 +69,6 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::patch('/keranjang/{id}/tambah', [KeranjangController::class, 'tambah'])->name('keranjang.tambah');
         Route::patch('/keranjang/{id}/kurangi', [KeranjangController::class, 'kurangi'])->name('keranjang.kurangi');
-
     });
 
     Route::get('/member.create', [MemberController::class, 'create'])->name('member.create');
@@ -102,4 +101,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/member/poin', [MemberController::class, 'daftarPoin'])->name('member.poin');
     Route::get('/member/add-points', [MemberController::class, 'showAddPointsForm'])->name('member.add_points');
     Route::post('/member/add-points', [MemberController::class, 'submitAddPoints'])->name('member.add_points_submit');
+
 });
