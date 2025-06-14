@@ -21,10 +21,10 @@
         <tbody>
             @forelse ($keranjangs as $item)
                 <tr>
-                    <td>{{ $item->product->name }}</td>
+                    <td>{{ $item->product->nama ?? 'Produk tidak ditemukan' }}</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>Rp {{ number_format($item->product->price) }}</td>
-                    <td>Rp {{ number_format($item->product->price * $item->quantity) }}</td>
+                    <td>Rp {{ number_format($item->product->harga ?? 0) }}</td>
+                    <td>Rp {{ number_format(($item->product->harga ?? 0) * $item->quantity) }}</td>
                     <td>
                         <form action="{{ route('keranjang.destroy', $item->id) }}" method="POST">
                             @csrf

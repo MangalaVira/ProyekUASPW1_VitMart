@@ -16,6 +16,7 @@ class KeranjangController extends Controller
         return view('keranjang', compact('keranjangs'));
     }
 
+
     public function store(Request $request)
 {
     if ($request->has('products')) {

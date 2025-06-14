@@ -99,6 +99,12 @@
                       <p>Buat Member</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/products/create" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Tambah Produk</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ul>

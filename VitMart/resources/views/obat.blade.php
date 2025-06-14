@@ -69,22 +69,22 @@
       </form>
 
       <script>
-  const produkList = [
-    { id: "OB1", nama: "Bodrex", harga: 12500, gambar: "{{ asset('/assets/assets/img/ObBodrex.png') }}" },
-    { id: "OB2", nama: "Entro Stop", harga: 16000, gambar: "{{ asset('/assets/assets/img/ObEntroStop.png') }}" },
-    { id: "OB3", nama: "Hansaplast", harga: 11500, gambar: "{{ asset('/assets/assets/img/ObHansaplast.png') }}" },
-    { id: "OB4", nama: "Hot In Cream", harga: 23000, gambar: "{{ asset('/assets/assets/img/ObHotInCream.png') }}" },
-    { id: "OB5", nama: "Koyo Cabe", harga: 17000, gambar: "{{ asset('/assets/assets/img/ObKoyoCabe.png') }}" },
-    { id: "OB6", nama: "Minyak Kayu Putih", harga: 30000, gambar: "{{ asset('/assets/assets/img/ObMinyakKayuPutih.png') }}" },
-    { id: "OB7", nama: "Mylanta", harga: 85000, gambar: "{{ asset('/assets/assets/img/ObMylanta.png') }}" },
-    { id: "OB8", nama: "OBH Combi", harga: 27500, gambar: "{{ asset('/assets/assets/img/ObOBHCombi.png') }}" },
-    { id: "OB9", nama: "Sangobion", harga: 26000, gambar: "{{ asset('/assets/assets/img/ObSangobion.png') }}" },
-    { id: "OB10", nama: "Tolak Angin", harga: 5000, gambar: "{{ asset('/assets/assets/img/ObTolakAngin.png') }}" },
-    { id: "OB11", nama: "Antimo", harga: 7000, gambar: "{{ asset('/assets/assets/img/ObAntimo.png') }}" },
-    { id: "OB12", nama: "Oskadon", harga: 3000, gambar: "{{ asset('/assets/assets/img/ObOskadon.png') }}" },
-  ];
+        const produkList = [
+          { id: "OB1", nama: "Bodrex", harga: 12500, gambar: "{{ asset('/assets/assets/img/ObBodrex.png') }}" },
+          { id: "OB2", nama: "Entro Stop", harga: 16000, gambar: "{{ asset('/assets/assets/img/ObEntroStop.png') }}" },
+          { id: "OB3", nama: "Hansaplast", harga: 11500, gambar: "{{ asset('/assets/assets/img/ObHansaplast.png') }}" },
+          { id: "OB4", nama: "Hot In Cream", harga: 23000, gambar: "{{ asset('/assets/assets/img/ObHotInCream.png') }}" },
+          { id: "OB5", nama: "Koyo Cabe", harga: 17000, gambar: "{{ asset('/assets/assets/img/ObKoyoCabe.png') }}" },
+          { id: "OB6", nama: "Minyak Kayu Putih", harga: 30000, gambar: "{{ asset('/assets/assets/img/ObMinyakKayuPutih.png') }}" },
+          { id: "OB7", nama: "Mylanta", harga: 85000, gambar: "{{ asset('/assets/assets/img/ObMylanta.png') }}" },
+          { id: "OB8", nama: "OBH Combi", harga: 27500, gambar: "{{ asset('/assets/assets/img/ObOBHCombi.png') }}" },
+          { id: "OB9", nama: "Sangobion", harga: 26000, gambar: "{{ asset('/assets/assets/img/ObSangobion.png') }}" },
+          { id: "OB10", nama: "Tolak Angin", harga: 5000, gambar: "{{ asset('/assets/assets/img/ObTolakAngin.png') }}" },
+          { id: "OB11", nama: "Antimo", harga: 7000, gambar: "{{ asset('/assets/assets/img/ObAntimo.png') }}" },
+          { id: "OB12", nama: "Oskadon", harga: 3000, gambar: "{{ asset('/assets/assets/img/ObOskadon.png') }}" },
+        ];
 
-  const jumlahMap = {};
+        const jumlahMap = {};
 
   function formatRupiah(angka) {
     return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");

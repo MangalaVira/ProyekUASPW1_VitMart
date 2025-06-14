@@ -13,7 +13,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <form action="{{ route('member.create') }}" method="POST">
+            <form action="{{ route('member.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama Lengkap</label>

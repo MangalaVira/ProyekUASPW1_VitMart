@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = [
-        'nama', 'harga', 'stok', 'deskripsi', 'kategori_id'
-    ];
+    protected $primaryKey = 'id'; //+
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = ['id', 'nama', 'harga', 'stok', 'deskripsi', 'kategori'];
 }

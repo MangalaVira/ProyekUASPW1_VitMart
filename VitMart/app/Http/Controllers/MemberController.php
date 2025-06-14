@@ -10,7 +10,7 @@ class MemberController extends Controller
 
     public function create()
     {
-        return view('member.create');
+        return view('member/create');
     }
 
     public function store(Request $request)
@@ -24,7 +24,7 @@ class MemberController extends Controller
 
         Member::create($request->all());
 
-        return redirect()->route('member.create')->with('success', 'Member berhasil dibuat!');
+        return redirect()->route('member.indexmember')->with('success', 'Member berhasil dibuat!');
     }
 
     public function addPointsForm()
@@ -44,12 +44,17 @@ class MemberController extends Controller
     $member->poin += $request->poin;
     $member->save();
 
-    return redirect()->route('member.poin')->with('success', 'Poin berhasil ditambahkan.');
+    return redirect()->route('member/poin')->with('success', 'Poin berhasil ditambahkan.');
     }
     public function poin()
     {
     $members = Member::all();
-    return view('member.poin', compact('members'));
+    return view('member/poin', compact('members'));
     }
 
+    public function index()
+    {
+    $members = Member::all();
+    return view('member.indexmember', compact('members'));
+    }
 }

@@ -8,7 +8,7 @@
     <!--CSS-->
     <link rel="stylesheet" href="style.css" />
 
-    @extends('layouts.app')
+    @extends('layout.master')
 
 @section('content')
 <div class="container mt-4">

@@ -59,75 +59,70 @@
     <body>
       <h1>Keranjang Belanja Minuman</h1>
 
-      <div class="grid-container" id="produk-container"></div>
+      <form id="keranjangForm" action="{{ route('keranjang.store') }}" method="POST">
+        @csrf
+        <div class="grid-container" id="produk-container"></div>
+        <input type="hidden" name="multi" value="1">
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success">Masukkan ke Keranjang</button>
+        </div>
+      </form>
 
       <script>
         const produkList = [
-          { id: 1, nama: "Cocacola", harga: 10000, gambar: 
-                    src="{{ asset("/assets/assets/img/MiCocaColaK.png") }}" },
-          { id: 2, nama: "Fanta", harga: 17000, gambar: 
-                    src="{{ asset("/assets/assets/img/MiFanta.png") }}" },
-          { id: 3, nama: "Golda", harga: 6500, gambar: 
-                    src="{{ asset("/assets/assets/img/MiGolda.png") }}" },
-          { id: 4, nama: "Le Mineral", harga: 9500, gambar: 
-                    src="{{ asset("/assets/assets/img/MiLeMineral.png") }}" },
-          { id: 5, nama: "Mizone", harga: 8000, gambar: 
-                    src="{{ asset("/assets/assets/img/MiMizone.png") }}" },
-          { id: 6, nama: "Pocari Sweat", harga: 9500, gambar: 
-                    src="{{ asset("/assets/assets/img/MiPocari.png") }}" },
-          { id: 7, nama: "Teh Pucuk Harum", harga: 5500, gambar: 
-                    src="{{ asset("/assets/assets/img/MiPucuk.png") }}" },
-          { id: 8, nama: "Sprite", harga: 9000, gambar: 
-                    src="{{ asset("/assets/assets/img/MiSprite.png") }}" },
-          { id: 9, nama: "Starbuck", harga: 18500, gambar: 
-                    src="{{ asset("/assets/assets/img/MiStarbuck.png") }}" },
-          { id: 10, nama: "Ultra Milk", harga: 8500, gambar: 
-                    src="{{ asset("/assets/assets/img/MiUltraMilk.png") }}" },
-          { id: 11, nama: "You C1000", harga: 13000, gambar: 
-                    src="{{ asset("/assets/assets/img/MiYouC1000.png") }}" },
-          { id: 12, nama: "Pepsi", harga: 10500, gambar: 
-                  src="{{ asset("/assets/assets/img/MiPepsi.png") }}" },
+          { id: "MI1", nama: "Cocacola", harga: 10000, gambar: "{{ asset('/assets/assets/img/MiCocaColaK.png') }}" },
+          { id: "MI2", nama: "Fanta", harga: 17000, gambar: "{{ asset('/assets/assets/img/MiFanta.png') }}" },
+          { id: "MI3", nama: "Golda", harga: 6500, gambar: "{{ asset('/assets/assets/img/MiGolda.png') }}" },
+          { id: "MI4", nama: "Le Mineral", harga: 9500, gambar: "{{ asset('/assets/assets/img/MiLeMineral.png') }}" },
+          { id: "MI5", nama: "Mizone", harga: 8000, gambar: "{{ asset('/assets/assets/img/MiMizone.png') }}" },
+          { id: "MI6", nama: "Pocari Sweat", harga: 9500, gambar: "{{ asset('/assets/assets/img/MiPocari.png') }}" },
+          { id: "MI7", nama: "Teh Pucuk Harum", harga: 5500, gambar: "{{ asset('/assets/assets/img/MiPucuk.png') }}" },
+          { id: "MI8", nama: "Sprite", harga: 9000, gambar: "{{ asset('/assets/assets/img/MiSprite.png') }}" },
+          { id: "MI9", nama: "Starbuck", harga: 18500, gambar: "{{ asset('/assets/assets/img/MiStarbuck.png') }}" },
+          { id: "MI10", nama: "Ultra Milk", harga: 8500, gambar: "{{ asset('/assets/assets/img/MiUltraMilk.png') }}" },
+          { id: "MI11", nama: "You C1000", harga: 13000, gambar: "{{ asset('/assets/assets/img/MiYouC1000.png') }}" },
+          { id: "MI12", nama: "Pepsi", harga: 10500, gambar: "{{ asset('/assets/assets/img/MiPepsi.png') }}" }
         ];
 
         const jumlahMap = {};
 
-      function formatRupiah(angka) {
-        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      }
+  function formatRupiah(angka) {
+    return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
-      function ubahJumlah(id, delta) {
-        jumlahMap[id] += delta;
-        if (jumlahMap[id] < 1) jumlahMap[id] = 1;
+  function ubahJumlah(id, delta) {
+    jumlahMap[id] += delta;
+    if (jumlahMap[id] < 1) jumlahMap[id] = 1;
 
-        const produk = produkList.find((p) => p.id === id);
-        const total = jumlahMap[id] * produk.harga;
+    const produk = produkList.find((p) => p.id === id);
+    const total = jumlahMap[id] * produk.harga;
 
-        document.getElementById("jumlah-" + id).textContent = jumlahMap[id];
-        document.getElementById("total-" + id).textContent = formatRupiah(total);
-      }
+    document.getElementById("jumlah-" + id).textContent = jumlahMap[id];
+    document.getElementById("total-" + id).textContent = formatRupiah(total);
+    document.getElementById("input-" + id).value = jumlahMap[id];
+  }
 
-      const container = document.getElementById("produk-container");
+  const container = document.getElementById("produk-container");
 
-      produkList.forEach((produk) => {
-        jumlahMap[produk.id] = 0;
+  produkList.forEach((produk) => {
+    jumlahMap[produk.id] = 0;
 
-        const item = document.createElement("div");
-        item.classList.add("item");
+    const item = document.createElement("div");
+    item.classList.add("item");
 
-        item.innerHTML = `
-          <h3>${produk.nama}</h3>
-          <img src="${produk.gambar}" alt="${produk.nama}">
-          <p>Harga: Rp ${formatRupiah(produk.harga)}</p>
-          <div class="quantity-control">
-            <button onclick="ubahJumlah(${produk.id}, -1)">-</button>
-            <span id="jumlah-${produk.id}">${jumlahMap[produk.id]}</span>
-            <button onclick="ubahJumlah(${produk.id}, 1)">+</button>
-          </div>
-          <p class="total">Total: Rp <span id="total-${produk.id}">0</span></p>
-        `;
+    item.innerHTML = `
+      <h3>${produk.nama}</h3>
+      <img src="${produk.gambar}" alt="${produk.nama}">
+      <p>Harga: Rp ${formatRupiah(produk.harga)}</p>
+      <div class="quantity-control">
+        <button type="button" onclick="ubahJumlah('${produk.id}', -1)">-</button>
+        <span id="jumlah-${produk.id}">0</span>
+        <button type="button" onclick="ubahJumlah('${produk.id}', 1)">+</button>
+      </div>
+      <p class="total">Total: Rp <span id="total-${produk.id}">0</span></p>
+      <input type="hidden" name="products[${produk.id}]" id="input-${produk.id}" value="0">
+    `;
 
-        container.appendChild(item);
-      });
-    </script>
-  </body>
-</html>
+    container.appendChild(item);
+  });
+</script>

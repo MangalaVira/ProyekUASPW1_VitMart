@@ -27,14 +27,14 @@
             <!--end::Messages Dropdown Menu-->
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
-              <div style="position: fixed; top: 5.5px; right: 220px;">
-  <a href="#" class="text-dark position-relative">
-    <i class="bi bi-cart3" style="font-size: 30px;"></i>
-    <span id="keranjang-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-      0
-    </span>
-  </a>
-</div>
+          <div style="position:sticky; top: 5.5px; right: 185px;">
+            <a href="#" class="text-dark position-relative">
+              <i class="bi bi-cart3" style="font-size: 30px;"></i>
+              <span id="keranjang-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              0
+              </span>
+            </a>
+          </div>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <span class="dropdown-item dropdown-header">15 Notifications</span>
                 <div class="dropdown-divider"></div>

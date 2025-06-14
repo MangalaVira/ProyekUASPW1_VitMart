@@ -19,7 +19,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama Member</th>
-                <th>Email</th>
+                <th>No Telp</th>
                 <th>Total Poin</th>
             </tr>
         </thead>
