@@ -10,7 +10,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $products = [
-            //Obat
+            //Obat-Obatan
             ['id' => "OB1", 'name' => 'Bodrex', 'price' => 12500],
             ['id' => "OB2", 'name' => 'Entro Stop', 'price' => 16000],
             ['id' => "OB3", 'name' => 'Hansaplast', 'price' => 11500],
@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
             ['id' => "OB11", 'name' => 'Antimo', 'price' => 7000],
             ['id' => "OB12", 'name' => 'Oskadon', 'price' => 3000],
 
-            //Minum
+            //Minuman
             ['id' => "MI1",  'name' => 'Cocacola', 'price' => 10000],
             ['id' => "MI2",  'name' => 'Fanta', 'price' => 17000],
             ['id' => "MI3",  'name' => 'Golda', 'price' => 6500],
@@ -38,7 +38,7 @@ class ProductSeeder extends Seeder
             ['id' => "MI11", 'name' => 'You C1000', 'price' => 13000],
             ['id' => "MI12", 'name' => 'Pepsi', 'price' => 10500],
 
-            //Makan
+            //Makanan
             ['id' => "MA1", 'name' => "Big Babol", 'price' => 13500],
             ['id' => "MA2", 'name' => "Chitato", 'price' => 20000],
             ['id' => "MA3", 'name' => "Kacang 2 Kelinci", 'price' => 35000],

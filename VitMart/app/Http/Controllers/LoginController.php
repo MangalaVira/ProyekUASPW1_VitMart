@@ -14,7 +14,7 @@ class LoginController extends Controller
         return redirect('/User');
     }
 
-    return redirect('/'); // fallback jika tidak ada role cocok
+    return redirect('/');
 }
 
 }

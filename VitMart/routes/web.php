@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::prefix('User')->group(function (){
         Route::get("/User", [UserController::class, 'index']);
     });
+
     Route::prefix('admin')->group(function (){
         Route::get("/admin", [AdminController::class, 'index']);
     });
@@ -73,23 +74,16 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/member', [MemberController::class, 'store'])->name('member.store');
     Route::get('/member/success', [MemberController::class, 'success'])->name('member.success');
     Route::get('/member', [MemberController::class, 'index'])->name('member.indexmember');
-
     Route::get('/member/poin', [MemberController::class, 'poin'])->name('member.add_points');
-    Route::get('/member/add-points', [MemberController::class, 'addPointsForm'])->name('member.add_points_form');
-    Route::post('/member/add-points', [MemberController::class, 'addPointsSubmit'])->name('member.add_points_submit');
+    Route::get('/member/add-points', [MemberController::class, 'addPointsForm'])->name('member.add_points_form');Route::post('/member/add-points', [MemberController::class, 'addPointsSubmit'])->name('member.add_points_submit');
 
-    Route::group(['middleware' => [CekLogin::class.':user']], function()
-    {
-
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::group(['middleware' => [CekLogin::class.':user']], function(){
+        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+        Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     });
 
     Route::resource('products', ProductController::class);
-
 });

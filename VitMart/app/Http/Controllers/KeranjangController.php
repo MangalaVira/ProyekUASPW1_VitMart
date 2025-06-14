@@ -29,7 +29,7 @@ class KeranjangController extends Controller
                     ->first();
 
                 if ($keranjang) {
-                    $keranjang->quantity += $quantity; // overwrite
+                    $keranjang->quantity += $quantity;
                     $keranjang->save();
                 } else {
                     Keranjang::create([

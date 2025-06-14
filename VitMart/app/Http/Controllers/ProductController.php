@@ -25,21 +25,16 @@
         {
             $request->validate([
                 'nama' => 'required|string|max:255',
-        'harga' => 'required|integer|min:0',
-        'stok' => 'required|integer|min:0',
-        'deskripsi' => 'nullable|string',
-        'kategori' => 'nullable|string',
+                'harga' => 'required|integer|min:0',
+                'stok' => 'required|integer|min:0',
+                'deskripsi' => 'nullable|string',
+                'kategori' => 'nullable|string',
         
             ]);
 
-            // Ambil prefix dari kategori (2 huruf pertama atau default 'PR' jika kosong)
-$prefix = strtoupper(substr($request->kategori ?? 'PR', 0, 2));
-
-// Hitung jumlah produk dengan prefix yang sama
-$lastCount = Product::where('id', 'LIKE', $prefix . '%')->count() + 1;
-
-// Buat ID baru, misal: OB1, OB2, dst.
-$newId = $prefix . $lastCount;
+        $prefix = strtoupper(substr($request->kategori ?? 'PR', 0, 2));
+        $lastCount = Product::where('id', 'LIKE', $prefix . '%')->count() + 1;
+        $newId = $prefix . $lastCount;
 
             Product::create([
                 'id' => $newId,
